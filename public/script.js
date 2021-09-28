@@ -333,7 +333,7 @@ class Game {
   spawnMeteor() {
     this.intervalsToClean = setInterval(() => {
       this.spawnCounter += 1;
-      for (let i = 0; i < Math.round(players.length / 2); i += 1) {
+      for (let i = 0; i < Math.round(players.length / 3); i += 1) {
         this.createMeteor(1, playerSize * 2, 100);
       }
 

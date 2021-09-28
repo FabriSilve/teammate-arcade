@@ -2,7 +2,20 @@ const express = require('express');
 const { Server } = require('http');
 const path = require('path');
 const socket = require('socket.io');
+const { networkInterfaces } = require('os');
 
+const nets = networkInterfaces();
+const results = [];
+
+for (const name of Object.keys(nets)) {
+    for (const net of nets[name]) {
+        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
+        if (net.family === 'IPv4' && !net.internal) {
+            results.push(net.address);
+        }
+    }
+}
+const lanIp = results[0];
 
 // Server
 const PORT = 5000;
@@ -19,7 +32,7 @@ app.get('/controller', (_req, res) => res.sendFile(path.join(__dirname, '/public
 app.get('/host', (_req, res) => res.sendFile(path.join(__dirname, '/public/host/index.html')));
 app.get('/constants', (_req, res) => res.json({ events, roles }));
 
-server.listen(PORT, () => console.log('Starting server on port ', PORT));
+server.listen(PORT, () => console.log('Starting server:', `http://${lanIp}:${PORT}`));
 
 
 // Constants

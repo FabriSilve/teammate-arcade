@@ -21,6 +21,11 @@ function numberFormat(number) {
   return Math.round(n).toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, '\'');
 };
 
+function selectColor(colorNum, colors){
+  if (colors < 1) colors = 1; // defaults to one color - avoid divide by zero
+  return "hsl(" + (colorNum * (360 / colors) % 360) + ",100%,50%)";
+}
+
 // CANVAS GAME
 canvas.width = windowWidth;
 canvas.height = windowHeight;
@@ -311,10 +316,8 @@ class Game {
       y: Math.sin(angle) * ((Math.random() * speed) + 0.5),
     };
   
-    const mainColor = Math.random() > .5
-      ? Math.random() * 2
-      : Math.random() * 4 + 7;
-    const color = `hsl(${mainColor * 20}, 50%,  50%)`;
+    const mainColor = Math.random() * 10;
+    const color = `hsl(${Math.floor(mainColor * 5)}, 50%,  50%)`;
   
     meteors.push(
       new Meteor(
@@ -479,16 +482,17 @@ async function initHost() {
   );
 
   socket.on(events.NEW_PLAYER, (player) => {
-    const l = connectedPlayers.length;
-    let x = windowWidth / 2;
-    if (l === 0) x = windowWidth / 2;
-    else if (l % 2 === 0) x = (windowWidth / 2) + ((l % 2) * (3 * playerSize));
-    else x = (windowWidth / 2) - ((l % 2) * (3 * playerSize));
+    const counter = connectedPlayers.length + 1;
+    let x;
+    const halfScreen = windowWidth / 2;
+    if (counter === 1) x = halfScreen;
+    else if (counter % 2 === 0) x = halfScreen + (Math.round(counter / 2) * (playerSize * 3));
+    else x = halfScreen - ((Math.round(counter / 2) - 1) * (playerSize * 3));
 
     const completePlayer = {
       id: player.id,
       username: player.username,
-      color: `hsl(${(Math.random() * 12) * 20 + 50}, 50%, 50%)`,
+      color: selectColor(Math.floor(Math.random() * 70), 70),
       x,
       ready: false,
       angle: 0,
@@ -517,7 +521,8 @@ async function initHost() {
       socket.emit(events.GAME_START, connectedPlayers);
       const endCallback = () => {
         socket.emit(events.GAME_END);
-        connectedPlayers.forEach(p => p.ready = false)
+        connectedPlayers.forEach(p => p.ready = false);
+        ui.updatePlayersList(connectedPlayers);
       }
       game.start(connectedPlayers, endCallback);
     }

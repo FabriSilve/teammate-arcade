@@ -39,12 +39,23 @@ server.listen(PORT, () => console.log('Starting server:', `http://${lanIp}:${POR
 const events = {
   CONNECTION: 'connection',
   DISCONNECT: 'disconnect',
-  NEW_PLAYER: 'newPlayer',
+
   HOST_DISCONNECTED: 'hostDisconnected',
   PLAYER_DISCONNECTED: 'playerDisconnected',
-  SYNC_PLAYERS: 'syncPlayers',
-  PLAYERS_DATA: 'playersData',
-  PLAYER_DATA: 'playerData',
+
+  NEW_PLAYER: 'newPlayer',
+  PLAYER_ADDED: 'playerAdded',
+  PLAYER_ACCEPTED: 'playerAccepted',
+  PLAYER_REJECTED: 'playerRejected',
+  PLAYER_START: 'playerStart',
+  PLAYER_SHOOT: 'playerShoot',
+
+  HOST_INIT: 'hostInit',
+
+  GAME_START: 'gameStart',
+  GAME_END: 'gameEnd',
+
+  ERROR: 'ERROR,'
 };
 
 const roles = {
@@ -61,8 +72,7 @@ const io = socket(server, { pingTimeout: PING_TIMEOUT });
 
 io.on(events.CONNECTION, function (socket) {
   const role = socket.handshake.query.role;
-  console.log('connected socket ', socket.id, role)
-
+  
   if (role === roles.HOST) {
     if (!!host) {
       socket.disconnect();
@@ -70,46 +80,64 @@ io.on(events.CONNECTION, function (socket) {
     }
     host = socket;
 
-    socket.on(events.SYNC_PLAYERS, function () {
-      console.log('request sync data')
-      socket.emit(events.PLAYERS_DATA, players);
+    socket.on(events.NEW_PLAYER, player => {
+      socket.to(host.id).emit(events.NEW_PLAYER, player)
+    });
+
+    socket.on(events.PLAYER_ADDED, (player) => {
+      socket.to(player.id).emit(events.PLAYER_ACCEPTED, player)
+    });
+
+    socket.on(events.GAME_START, () => {
+      socket.broadcast.emit(events.GAME_START);
+    })
+    socket.on(events.GAME_END, () => {
+      socket.broadcast.emit(events.GAME_END);
     })
 
     socket.on(events.DISCONNECT, function () {
       socket.broadcast.emit(events.HOST_DISCONNECTED);
       host = null;
-      console.log('disconnected socket ', socket.id, role)
 
     });
   } else if (role === roles.PLAYER) {
     if (!host) {
+      socket.emit(events.ERROR, 'NO_HOST_FOUND');
       socket.disconnect();
       return;
     }
-    players[socket.id] = {
-      id: socket.id,
-      color: '0x' + Math.floor(Math.random() * 16777215).toString(16),
 
-      speed: 0,
-      rotation: 0,
-    }
-
-    socket.to(host.id).to(socket.id).emit(events.NEW_PLAYER, players[socket.id]);
-
-    socket.on(events.PLAYER_DATA, function (data) {
-      players[socket.id] = {
-        speed: data.speed,
-        rotation: data.rotation,
+    socket.on(events.NEW_PLAYER, (username) => {
+      const player = {
+        id: socket.id,
+        username,
       };
+      players[socket.id] = player;
+      socket.to(host.id).emit(events.NEW_PLAYER, player)
     });
+
+    socket.on(events.PLAYER_START, () => {
+      socket.to(host.id).emit(events.PLAYER_START, players[socket.id]);
+    })
+    socket.on(events.PLAYER_SHOOT, (angle) => {
+      const data = {
+        id: socket.id,
+        angle,
+      }
+      socket.to(host.id).emit(events.PLAYER_SHOOT, data);
+    })
+
+    socket.on(events.PLAYER_ACCEPTED, (data) => socket.emit(events.PLAYER_ACCEPTED, data))
+
+    socket.on(events.PLAYER_START, () => {
+      socket.to(host.id).emit(events.PLAYER_START, { id: socket.id } )
+    })
 
     socket.on(events.DISCONNECT, function () {
       if (!!host) {
         socket.to(host.id).emit(events.PLAYER_DISCONNECTED, players[socket.id]);
       }
       delete players[socket.id];
-      console.log('disconnected socket ', socket.id, role)
-
     });
 
   } else socket.close();

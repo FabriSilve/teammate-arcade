@@ -337,7 +337,7 @@ class Game {
       if (this.spawnCounter % 7 === 0) this.createMeteor(1, playerSize * 3, 150);
       if (this.spawnCounter % 23 === 0) this.createMeteor(1.5, playerSize, 50);
       if (this.spawnCounter % 37 === 0) this.createMeteor(0.5, 300, 500);
-    }, 5000);
+    }, 4000);
   }
 
   endGame() {
@@ -385,7 +385,7 @@ function animateGame(endGameCallback) {
         safeArrayRemove(players, playerIndex);
 
         meteor.explode(player.x, player.y);
-        if (meteor.radius - playerSize > playerSize * 1.5) {
+        if (meteor.radius - playerSize > playerSize * 1.2) {
           gsap.to(meteor, { radius: meteor.radius - playerSize});
         } else {
           safeArrayRemove(meteors, meteorIndex);
@@ -406,7 +406,7 @@ function animateGame(endGameCallback) {
         safeArrayRemove(projectiles, projectileIndex);
 
         // MOVE IN SCLASS
-        if (meteor.radius - playerSize > playerSize * 1.5) {
+        if (meteor.radius - playerSize > playerSize * 1.2) {
           gsap.to(meteor, { radius: meteor.radius - playerSize});
         } else {
           safeArrayRemove(meteors, meteorIndex);

@@ -2,13 +2,62 @@
 <html>
 
 <head>
-  <title>Controller</title>
+  <title>Player</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="/public/controller/style.css">
+  <!-- <meta name="viewport" content="user-scalable=no"> -->
+
+  <meta name="viewport" content="minimal-ui, width: device-width, height: device-height, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, user-scale=no">
+  <link rel="stylesheet" href="./public/controller/style.css">
 </head>
 
 <body>
-  <h1>Controller</h1>
+  <div id="warningMessage">
+    <h2>Please turn your device</h2>
+    <img src="/public/turn-device.png" />
+  </div>
+
+  <div id="menuContainer">
+    <div id="usernameModal">
+      <h1>Choose your username</h1>
+      <div id="modalInput">
+        <input name="username" id="usernameInput" placeholder="username" minlength="3" maxlength="15" type="text" />
+      </div>
+      <div id="modalButtons">
+        <div id="saveButton">Save</div>
+        <div id="infoButton">Info</div> <!-- https://media.wired.com/photos/59326d5344db296121d6aee9/master/pass/8552.gif -->
+      </div>
+    </div>
+  </div>
+
+  <div id="controllerWrapper">
+    <div id="playerDetails">
+      <span id="playerUsername">Username</span>
+      <span id="playerStatus"><span class="offline">disconnected</span></span>
+    </div>
+    <div id="controller">
+      <div id="analogicWrapper">
+        <div id="joystick" class="noOutline">
+          <div id="stick" class="noOutline"></div>
+        </div>
+      </div>
+      <div id="optionsWrapper">
+        <div class="centralBar"></div>
+        <div class="centralBar"></div>
+        <div class="centralBar"></div>
+        <div id="buttonsBox">
+          <div id="joinButton" class="optionButton noOutline clickable">join</div>
+          <div id="startButton" class="optionButton noOutline clickable">start</div>
+        </div>
+      </div>
+      <div id="buttonWrapper">
+        <div id="buttonBorder" class="noOutline">
+          <div id="aButton" class="noOutline clickable"></div>
+        </div>
+      </div>
+    </div>
+    <div id="credit">(C) FabriSilve 2021</div>
+  </div>
+
   <script src="/socket.io/socket.io.js"></script>
   <script src="/public/controller/script.js"></script>
 </body>

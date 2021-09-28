@@ -1,0 +1,311 @@
+@font-face {
+  font-family: 'ArcadeClassic';
+  src: url('/public/font/ARCADECLASSIC.TTF') format('truetype');
+}
+
+html,body {
+  font-family: 'ArcadeClassic', sans-serif;
+  background-color: #e0ded4;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#controllerWrapper {
+  display: flex;
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+  flex-direction: column;
+  background-color: #e0ded4;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+#playerDetails {
+  border: 5px solid rgb(120, 120, 120);
+  border-style: outset;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 2rem - 5px);
+  padding: 1rem;
+  height: 6%;
+  font-size: 2rem;
+  letter-spacing: 3px;
+}
+
+#playerStatus {
+  font-size: 1.5rem;
+}
+
+#controller {
+  border: 5px solid rgb(120, 120, 120);
+  border-style: inset;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 1rem - 5px);
+  height: calc(70% - 1rem - 5px);
+  padding: 0.5rem;
+  background-color: #4B4E43;
+}
+
+#credit {
+  border: 5px solid rgb(120, 120, 120);
+  border-style: outset;
+  width: calc(100% - 8rem - 5px);
+  padding: 0.5rem 4rem;
+  background-color: #30312a;
+  color:rgb(140, 140, 140);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5%;
+  word-spacing: 10px;
+}
+
+#analogicWrapper, #optionsWrapper, #buttonWrapper  {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#joystick {
+  width: 70%;
+  background-color: black;
+  border: 4px #e0ded4 solid;
+  border-radius: 50%;
+}
+
+#stick {
+  background-color: rgb(90, 90, 90);
+  border: 5px rgb(55, 55, 55) solid;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  width: calc(80% - 10px);
+  margin: 10%;
+  padding-top: calc(80% - 10px);
+  z-index: 2;
+}
+
+#buttonBorder {
+  width: 70%;
+  border-radius: 1rem;
+  border: 5px #bfbeb9 solid;
+  border-style: outset;
+  background-color: #EDECE7;
+}
+
+#aButton {
+  width: calc(80% - 10px);
+  margin: 10%;
+  padding-top: calc(80% - 10px);
+  background: linear-gradient(to bottom, #DF2015 0%, #f84936 100%);
+  border-radius: 50%;
+  border: 5px rgba(85, 20, 20, 0.426) solid;
+  border-style: outset;
+  box-shadow: inset 0px 1px 2px 0px #fbfbfb, 0px 1px 1px 0px rgb(0 0 0 / 71%);
+  cursor: pointer;
+  user-select: none;
+}
+
+#optionsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  margin: -1rem 0;
+}
+
+.centralBar {
+  background-color: #222222;
+  border-radius: 10px;
+  width: 90%;
+  height: 15%;
+  max-height: 5rem;
+}
+
+.playerActive {
+  /* background-color: blue; */
+  box-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 8px #fff;
+}
+
+
+#buttonsBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  justify-content: space-around;
+  height: 20%;
+  max-height: 3rem;
+  width: calc(90% - 8px);
+  background-color: #e0ded4;
+  border-radius: 10px;
+  border: 4px solid #e0ded4;
+  box-shadow: inset 0px 1px 3px 4px rgb(50 50 50 / 30%);
+}
+
+.optionButton {
+  background-color: #464646;
+  border-radius: 10px;
+  border: 1px solid #272723;
+  padding:0.3rem 0.5rem;
+  min-width: 2.5rem;
+  box-shadow: inset 0px 1px 0px 0px rgb(255 255 255 / 51%);
+  color: #EDECE7;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+.noOutline,
+.noOutline:focus {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.clickable {
+  opacity: 1;
+  border-style: outset;
+  transition: .1s;
+}
+.clickable:active {
+  border-style: inset;
+  transform: scale(0.95);
+}
+
+#menuContainer {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(200, 200, 200, 0.7);
+}
+
+#usernameModal {
+  z-index: 3;
+  background-color: #b6b6b6;
+  border-radius: 1rem;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#usernameModal h1 {
+  font-size: 2rem;
+  letter-spacing: 3px;
+  color:rgb(40, 40, 40);
+  margin: 1rem 0;
+  text-align: center;
+}
+
+#modalInput {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+}
+
+#modalInput input[type=text] {
+  padding: 0.5rem 1rem;
+  border:0;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.1);
+  font-size: 2rem;
+  border-radius: 5px;
+  width: 100%;
+  min-width: 200px;
+  font-family:inherit;
+  letter-spacing: 5px;
+}
+
+#modalButtons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+  width: 60%;
+}
+#modalButtons div {
+  border-radius: 10px;
+  border: 1px solid #272723;
+  padding:0.5rem 1rem;
+  min-width: 5rem;
+  box-shadow: inset 0px 1px 0px 0px rgb(255 255 255 / 51%);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+#saveButton {
+  color: #fefefe;
+  background-color: #4CAF50;
+}
+
+#infoButton {
+  background-color: lightgray;
+}
+
+#warningMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40%;
+}
+
+@media only screen and (orientation:portrait){
+    #menuContainer,
+    #controllerWrapper {
+      display:none;
+    }
+
+    #warningMessage {
+      display:flex;
+    }
+}
+@media only screen and (orientation:landscape){
+  #menuContainer,
+    #controllerWrapper {
+      display:flex;
+    }
+
+    #warningMessage {
+      display:none;
+    }
+}
+
+.offline {
+  color: gray;
+}
+
+.online {
+  color: green;
+}

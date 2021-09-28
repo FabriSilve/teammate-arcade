@@ -1,0 +1,190 @@
+@font-face {
+  font-family: 'ArcadeClassic';
+  src: url('/public/font/ARCADECLASSIC.TTF') format('truetype');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'ArcadeClassic', sans-serif;
+  background: black;
+}
+
+.scoreBox {
+  user-select: none;
+  margin: 2rem;
+  position: fixed;
+  color: white;
+  font-size: 2rem;
+  font-weight: 300;
+  width: calc(100% - 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+}
+
+.scoreBox #gameScoreLabel {
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.playersBox {
+  user-select: none;
+  margin: 2rem;
+  position: fixed;
+  color: white;
+  font-size: 2rem;
+  font-weight: 300;
+  height: calc(100% - 1rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+
+.gameLabel {
+  line-height: 3rem;
+}
+
+#playersList {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin-top: 0.5rem;
+}
+
+.playersBox .player {
+  font-size: 2.5rem;
+  margin: 0;
+  line-height: 1.5rem;
+}
+
+#menuContainer {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#menuContainer #menuModal {
+  z-index: 3;
+  padding: 3rem;
+  border-radius: 1rem;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 5rem;
+  
+}
+
+#menuScoreLabel {
+  font-size: 6rem;
+  color: #fefefe;
+  text-shadow: -2px 0 0 #fdff2a, -4px 0 0 #df4a42, 2px 0 0 #91fcfe, 4px 0 0 #4405fc;
+}
+
+#menuLabel {
+  font-weight: 200;
+  font-size: 3rem;
+  color: #fefefe;
+  text-shadow: -2px 0 0 #fdff2a, -4px 0 0 #df4a42, 2px 0 0 #91fcfe, 4px 0 0 #4405fc;
+}
+
+#startButton {
+  width: 50%;
+  padding: 1rem;
+  background-color: green;
+  color: white;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+#gameTitle {
+  color: #b32727;
+  font-size: 7rem;
+  /* text-shadow: 0 0 1px #d13100, 0 -3px 3px rgba(255, 255, 255, 0.8), 0 3px 3px rgba(0, 0, 0, 0.5), 0 0 15px #d10000, 0 0 45px rgba(209, 38, 0, 0.8); */
+  text-align: center;
+  text-decoration: underline;
+  text-transform: none;
+  -webkit-transform: skew(-5deg) rotate(-5deg);
+  -ms-transform: skew(-5deg) rotate(-5deg);
+  transform: skew(-5deg) rotate(-5deg);
+  width: 100%;
+  z-index: 10;
+  letter-spacing: 15px;
+  text-shadow: -2px 0 0 #e0e1c3, -4px 0 0 #cc9d9b, 2px 0 0 #b5e5e6, 4px 0 0 #947be1;
+  margin: 0 0 6rem;
+}
+
+#connect {
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; */
+  color: #fefefe;
+  text-align: center;
+  margin: 4rem 0;
+  font-size: 3.5rem;
+  line-height: 2rem;
+  letter-spacing: 10px;
+  text-shadow: -3px 0 0 #fdff2a, -6px 0 0 #df4a42, 3px 0 0 #91fcfe, 6px 0 0 #4405fc;
+  animation: blink 1s steps(4, start) infinite;
+}
+@-moz-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@-o-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+#credit {
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  margin: 2rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  letter-spacing: 5px;
+  word-spacing: 10px;
+}
+
+#qrCode {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+.ready {
+  opacity: 1;
+}
+
+.notReady {
+  opacity: 0.3;
+}

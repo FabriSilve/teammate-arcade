@@ -2,22 +2,39 @@
 <html>
 
 <head>
-  <title>Welcome</title>
+  <title>Teammate Arcade</title>
   <meta charset="utf-8">
-  <!-- <link rel="stylesheet" href="/style.css"> -->
+  <link rel="stylesheet" href="./public/style.css">
 </head>
 
 <body>
-  <h1>Welcome</h1>
-  <div>
-    <a href="/host">Host</a>
+  <div class="scoreBox">
+    <div class="gameLabel">Total Score</div>
+    <div id="gameScoreLabel">0</div>
   </div>
-  <div>
-    <a href="/controller">Controller</a>
+  <div class="playersBox">
+    <span class="gameLabel">Players</span>
+    <div id="playersList"></div>
   </div>
+  <canvas></canvas>
   
-  <!-- <script src="/socket.io/socket.io.js"></script>
-  <script src="/script.js"></script> -->
+  <div id="menuContainer">
+    <div id="menuModal">
+      <h1 id="gameTitle">Meteors</h1>
+      <span id="menuScoreLabel">0</span>
+      <span id="menuLabel">last score</span>
+    </div>
+    <div id="connect">Connect player(s)</div>
+    <div id="credit">(C) FabriSilve 2021</div>
+    <div id="qrCode"></div>
+  </div>
+
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qr-creator/dist/qr-creator.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js" integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/public/script.js"></script>
 </body>
 
 </html>

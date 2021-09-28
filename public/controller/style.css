@@ -264,6 +264,10 @@ html,body {
   user-select: none;
 }
 
+.notSelectable {
+  user-select: none;
+}
+
 #saveButton {
   color: #fefefe;
   background-color: #4CAF50;

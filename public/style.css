@@ -10,14 +10,21 @@ body {
   background: black;
 }
 
+#gameOverUi {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  height: auto;
+}
+
 .scoreBox {
   user-select: none;
   margin: 2rem;
-  position: fixed;
   color: white;
   font-size: 2rem;
   font-weight: 300;
-  width: calc(100% - 4rem);
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -32,11 +39,10 @@ body {
 .playersBox {
   user-select: none;
   margin: 2rem;
-  position: fixed;
   color: white;
   font-size: 2rem;
   font-weight: 300;
-  height: calc(100% - 1rem);
+  /* height: calc(100% - 1rem); */
   display: flex;
   flex-direction: column;
   justify-content: start;

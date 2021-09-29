@@ -333,14 +333,14 @@ class Game {
   spawnMeteor() {
     this.intervalsToClean = setInterval(() => {
       this.spawnCounter += 1;
-      for (let i = 0; i < Math.round(players.length / 3); i += 1) {
+      for (let i = 0; i < players.length; i += 1) {
         this.createMeteor(1, playerSize * 2, 100);
       }
 
       if (this.spawnCounter % 7 === 0) this.createMeteor(1, playerSize * 3, 150);
       if (this.spawnCounter % 23 === 0) this.createMeteor(1.5, playerSize, 50);
       if (this.spawnCounter % 37 === 0) this.createMeteor(0.5, 300, 500);
-    }, 4000);
+    }, 3000);
   }
 
   endGame() {

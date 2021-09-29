@@ -337,9 +337,9 @@ class Game {
         this.createMeteor(1, playerSize * 2, 100);
       }
 
-      if (this.spawnCounter % 7 === 0) this.createMeteor(1, playerSize * 3, 150);
-      if (this.spawnCounter % 23 === 0) this.createMeteor(1.5, playerSize, 50);
-      if (this.spawnCounter % 37 === 0) this.createMeteor(0.5, 300, 500);
+      if (this.spawnCounter % 7 === 0) this.createMeteor(1.5, playerSize * 3, 150);
+      if (this.spawnCounter % 23 === 0) this.createMeteor(1.7, playerSize, 50);
+      if (this.spawnCounter % 37 === 0) this.createMeteor(1, 300, 500);
     }, 3000);
   }
 
